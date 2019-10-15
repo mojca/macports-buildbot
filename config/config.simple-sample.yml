@@ -1,0 +1,45 @@
+workers: {
+  portwatcher: '',
+
+  base_10_15_x86_64: '',
+
+  ports_10_15_x86_64: '',
+}
+
+config: {
+  production: false,
+  info: {
+    title:      'MacPorts',
+    titleURL:   'https://www.macports.org',
+    url:        'http://localhost:8010/',
+    httpport:   8010,
+    workerport: 9989,
+  },
+  urls: {
+    base:  'https://github.com/macports/macports-base.git',
+    ports: 'https://github.com/mojca/macports-ports.git',
+    mpbb:  'https://github.com/macports/mpbb.git',
+    infra: 'https://github.com/macports/macports-infrastructure.git',
+    guide: 'https://github.com/macports/macports-guide.git',
+    www:   'https://github.com/macports/macports-www.git',
+    archive_public:  'http://packages.macports.org',
+    archive_private: 'https://packages-private.macports.org',
+  },
+  paths: {
+    prefix: '/opt/local-builds',
+    tools:  '/opt/local',
+  },
+  database: {
+    # 'sqlite:///state.sqlite'
+  },
+}
+
+builders: {
+  watcher: {
+    worker: portwatcher,
+  },
+  ports:
+    -
+      name: ports-10_15_x86_64
+      worker: ports_10_15_x86_64
+}
