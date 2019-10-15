@@ -9,11 +9,11 @@ workers: {
 config: {
   production: false,
   info: {
-    title:      'MacPorts',
-    titleURL:   'https://www.macports.org',
-    url:        'http://localhost:8010/',
-    httpport:   8010,
-    workerport: 9989,
+    title:       'MacPorts',
+    titleURL:    'https://www.macports.org',
+    buildbotURL: 'http://localhost:8010/',
+    httpport:    8010,
+    workerport:  9989,
   },
   urls: {
     base:  'https://github.com/macports/macports-base.git',
@@ -28,6 +28,7 @@ config: {
   paths: {
     prefix: '/opt/local-builds',
     tools:  '/opt/local',
+    jobsprefix: '/opt/local',
   },
   database: {
     # 'sqlite:///state.sqlite'
@@ -38,8 +39,12 @@ builders: {
   watcher: {
     worker: portwatcher,
   },
-  ports:
-    -
-      name: ports-10_15_x86_64
-      worker: ports_10_15_x86_64
+  ports: [
+    {
+      os: '10.15',
+      name: ports-10_15_x86_64,
+      worker: ports_10_15_x86_64,
+    },
+  ],
+  base: [],
 }
