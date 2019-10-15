@@ -31,7 +31,7 @@ config: {
     jobsprefix: '/opt/local',
   },
   database: {
-    # 'sqlite:///state.sqlite'
+    db_url: 'sqlite:///state.sqlite',
   },
 }
 
@@ -42,6 +42,7 @@ builders: {
   ports: [
     {
       os: '10.15',
+      id: '10.15',
       name: ports-10_15_x86_64,
       worker: ports_10_15_x86_64,
     },
